@@ -78,7 +78,7 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $e)
     {
         // カスタムエラーページにexceptionを渡す
-        if ($this->shouldReturnJson($request, $e)) {
+        if ($this->shouldReturnJson($request, $e) || $e instanceof \Illuminate\Validation\ValidationException) {
             return parent::render($request, $e);
         }
 
