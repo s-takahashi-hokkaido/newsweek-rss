@@ -14,7 +14,7 @@
     <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
         <h2 class="text-lg font-bold text-gray-900 mb-4">🔍 記事を検索</h2>
         
-        <form method="GET" action="{{ route('articles.index') }}" class="space-y-4">
+        <form method="GET" action="{{ route('articles.index') }}" class="space-y-4" id="searchForm">
             {{-- 日付範囲 --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -95,12 +95,19 @@
                     🔍 検索する
                 </button>
                 
-                <a 
-                    href="{{ route('articles.index') }}" 
+                <button
+                    type="button"
+                    onclick="
+                        document.getElementById('date_from').value = '';
+                        document.getElementById('date_to').value = '';
+                        document.getElementById('url').value = '';
+                        document.getElementById('title').value = '';
+                        document.getElementById('searchForm').submit();
+                    "
                     class="flex-1 sm:flex-none px-6 py-2 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 focus:ring-4 focus:ring-gray-300 transition-colors text-center"
                 >
                     🔄 クリア
-                </a>
+                </button>
             </div>
         </form>
     </div>
