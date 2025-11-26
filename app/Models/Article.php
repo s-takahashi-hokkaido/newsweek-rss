@@ -79,9 +79,10 @@ class Article extends Model
             return $query->where('title', 'like', '%' . $title . '%');
         }
 
-        // FULLTEXT INDEXを使用した全文検索（100万件のデータでも高速）
+        // ngram parserを使用したFULLTEXT INDEXによる部分一致検索
+        // NATURAL LANGUAGE MODEを使用することで、ngramトークンでの部分一致が可能
         return $query->whereRaw(
-            'MATCH(title) AGAINST(? IN BOOLEAN MODE)',
+            'MATCH(title) AGAINST(? IN NATURAL LANGUAGE MODE)',
             [$title]
         );
     }
